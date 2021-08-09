@@ -13,15 +13,6 @@ The goals / steps of this project are the following:
 * Warp the detected lane boundaries back onto the original image.
 * Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
-[//]: # (Image References)
-
-[image1]: ./report_img/undistort.png "Undistorted"
-[image2]: ./report_img/threshold.png "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
-[video1]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
@@ -43,7 +34,7 @@ The code for this step is contained in the secode code cell of the IPython noteb
 2. then I process every image in `camera_cal`, after it success finding the conners I will append the result to array `imgpoints` and append objpoint to array `objpoints`. with this I can finally get the datasets for calibate distortion.
 
 3. after I got the datasets I can use `cv2.calibrateCamera(objpoints, imgpoints, img.shape[::-1], None, None)` to get `mtx, dist` then use those two with `cv2.undistort(img, mtx, dist, None, mtx)` to calibate every image before process anything else.
-![alt text][image1]
+![alt text](./report_img/undistort.png)
 
 ### Pipeline (single images)
 
@@ -60,7 +51,7 @@ the code for this step is contained in function `pipeline()` in `utils.py` and s
 2. I use light channel that contain good edge and conner as the input for sobel. Since the road image contains mostly vertical lines, so I apply only sobelx. after that I apply absolute and normalize the output then apply threshold to find the pixel with value within threshold range.
 3. but light channel lack the yellow lane information, it need saturation channel to fill that path, I apply threshold to saturation channel if the lower bound too high, the lane information will miss when the road is too bright and if the upper bound too high, I will got exceeding information when the road is too dark. so after tunning the threshold `(120, 180)` is the good trade off.
 4. then I do combine those two output together to get the final result.
-![alt text][image2]
+![alt text](./report_img/threshold.png)
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
