@@ -34,7 +34,7 @@ The code for this step is contained in the secode code cell of the IPython noteb
 2. then I process every image in `camera_cal`, after it success finding the conners I will append the result to array `imgpoints` and append objpoint to array `objpoints`. with this I can finally get the datasets for calibate distortion.
 
 3. after I got the datasets I can use `cv2.calibrateCamera(objpoints, imgpoints, img.shape[::-1], None, None)` to get `mtx, dist` then use those two with `cv2.undistort(img, mtx, dist, None, mtx)` to calibate every image before process anything else.
-![alt text](./report_img/undistort.png)
+![alt text](./report_img/undistort.PNG)
 
 ### Pipeline (single images)
 
